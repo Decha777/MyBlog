@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="h-screen my-24">
+
+    <form method="POST" class="m-32">
+        {% csrf_token %}
+        <p class="text-3xl">Are you sure you want to delete <span class="underline text-primary-200">{{object}}</span>?</p>
+        <input type="submit" class="btn bg-primary-400 m-4" value="Confirm">
+        <a href="{% url 'blog:post_detail' pk=post.pk %}" class="btn bg-green-700">Cancel</a>
+    </form>
+</div>
+{% endblock content %}

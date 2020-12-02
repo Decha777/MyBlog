@@ -1,0 +1,23 @@
+{% extends 'Accounts/base.html' %}
+{% block body_block %}
+<div class="container mylogin myContentform">
+  <div class="">
+    
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="flex justify-center">
+        <div class=" w-1/3 h-2/3 flex flex-col p-4 items-center shadow-lg bg-primary-100">
+            <div class=" bg-primary-500  ">
+                <img src="./bg.jpg" alt="" srcset="" class="h-full w-full object-cover object-center">
+            </div>
+            <h1 class=" h-6/12 ">Hello, </h1>
+            <input type="text" name="username" id="" class=' form w-8/12 h-6/12 mt-2' placeholder="Enter Username">
+            <input type="password" name="password" id="" class=' form w-8/12 h-6/12 mt-2' placeholder="Enter Password">
+            <button class="btn w-8/12 h-6/12 bg-primary-500 ">Sign In</button>
+        </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

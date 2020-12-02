@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+
+
+.grid-layout {
+    display: grid;
+    grid-template-areas: 'header''main''footer';
+    grid-template-columns: 1fr;
+    grid-template-rows: 5rem 1fr 5rem;
+    height: 100%;
+}
+
+#myHeader {
+    grid-area: header;
+}
+
+#myMain {
+    grid-area: main;
+}
+
+#myFooter {
+    grid-area: footer;
+
+}
+
+
+.btn {
+    @apply inline-block px-5 py-3 rounded-lg text-sm uppercase tracking-wider font-semibold ;
+}
+
+.btn:hover {
+    @apply shadow;
+}
+
+.btn:focus {
+    @apply outline-none shadow-outline;
+}
+
+.btn:active {
+    @apply shadow-md;
+}
+
+.form {
+    @apply mb-4 p-2 appearance-none block w-full bg-gray-200 text-gray-900 rounded border;
+}
+
+.form:focus {
+    @apply bg-gray-100;
+}
+
+.form:focus:invalid {
+    border-bottom: 6px solid red;
+}
+
+@tailwind utilities;

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Document</title>
+    
+    
+  <!-- vendor -->
+
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="{% static 'simple/vendor/bootstrap/css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'simple/vendor/bootstrap/css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'simple/vendor/bootstrap/fonts/glyphicons-halflings-regular.eot' %}">
+      <link rel="stylesheet" href="{% static 'simple/vendor/bootstrap/fonts/glyphicons-halflings-regular.svg' %}">
+      <link rel="stylesheet" href="{% static 'simple/vendor/bootstrap/fonts/glyphicons-halflings-regular.ttf' %}">
+      <link rel="stylesheet" href="{% static 'simple/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff' %}">
+      <link rel="stylesheet" href="{% static 'simple/vendor/bootstrap/fonts/glyphicons-halflings-regular.woff2' %}">
+
+      <!-- font-awsesome -->
+      <link rel="stylesheet" href="{% static 'simple/vendor/font-awesome/css/font-awesome.css' %}">
+      <link rel="stylesheet" href="{% static 'simple/vendor/font-awesome/css/font-awesome.min.css' %}">
+
+
+
+  <!-- Custom css -->
+  <link rel="stylesheet" href="{% static 'simple/css/clean-blog.css' %}">
+  <link rel="stylesheet" href="{% static 'simple/css/clean-blog.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-dark ">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand primaryColor" href="{% url 'blog:post_list' %}" style="color: #0085A1; ">BLOG|{{user.username|title}}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right ">
+                <li>
+                    <a href="{% url 'blog:post_list' %}" class="primaryColor">Home</a>
+
+                    {% if user.is_authenticated %}
+                <li><a class="primaryColor" href="{% url 'blog:post_new' %}">New Post</a></li>
+                <li><a class="primaryColor" href="{% url 'blog:post_draft_list' %}">Drafts</a></li>
+                <li><a class="primaryColor" href="{% url 'admin:index' %}">Admin Page</a></li>
+                <li><a class="primaryColor" href="{% url 'user_logout' %}" style="color: #0085A1;">Logout</a></li>
+
+                {% else %}
+                <li><a class="primaryColor" href="{% url 'Accounts:register' %}">Register</a></li>
+                <li><a class="primaryColor" href="{% url 'user_login' %}" style="color: #0085A1;">Login</a></li>
+                {% endif%}
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+  <div class="container">
+    {% block body_block %}
+
+
+    {% endblock %}
+  </div>
+
+
+
+
+  <!-- Footer -->
+<footer>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              <ul class="list-inline text-center">
+                  <li>
+                      <a href="https://facebook.com/" target="_blank">
+                          <span class="fa-stack fa-lg">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                          </span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://github.com/" target="_blank">
+                          <span class="fa-stack fa-lg">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                      </a>
+                  </li>
+              </ul>
+              <p class="copyright text-muted">Copyright &copy; Decha77 2020</p>
+          </div>
+      </div>
+  </div>
+</footer>
+
+
+
+
+  <script src="{% static 'simple/js/clean-blog.js' %}"></script>
+  <script src="{% static 'simple/js/clean-blog.min.js' %}"></script>
+  <script src="{% static 'simple/js/contact_me.js' %}"></script>
+
+  <script src="{% static 'simple/js/jqBootstrapValidation.js' %}"></script>
+  
+  <script src="{% static 'simple/vendor/jquery/jquery.js' %}"></script>
+  <script src="{% static 'simple/vendor/jquery/jquery.min.js' %}"></script>
+  
+  <script src="{% static 'simple/vendor/bootstrap/js/bootstrap.js' %}"></script>
+  <script src="{% static 'simple/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  
+  
+
+</body>
+
+</html>

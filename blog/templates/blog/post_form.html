@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+
+<div class="flex justify-center">
+    <div class=" w-8/12  px-8 h-2/3 flex flex-col  items-center shadow-lg bg-primary-100 m-32">
+        <h1 class="  ">Hello, </h1>
+        <form method="POST" enctype='multipart/form-data' class='w-full flex flex-col justify-center mx-4'>
+            {% csrf_token %}
+
+            {{ form.as_p}}
+            {{ form.media}}
+            <button class="btn w-8/12 h-6/12 bg-primary-500 self-center my-4 m-3">Create Post</button>
+        </form>
+
+    </div>
+</div>
+
+
+<script>
+    const author = {{ user.id}}
+    document.getElementById('author').value = author
+</script>
+{% endblock%}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog || {% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'tailwind/css/style.css' %}" />
+  </head>
+
+  <body class="box-border h-screen ">
+    <div class="grid-layout">
+      <header id="myHeader" class="myHeader bg-blue-500">
+        <nav
+          class="bg-transparent py-4 px-4 lg:px-16 xl:py-8 fixed top-0 z-50 w-full md:px-8 xl:px-24 xxl:px-40"
+          id="navbar"
+        >
+          <div class="flex items-center justify-between flex-wrap text-xl">
+            <div class="w-1/2 md:w-1/4  px-4 py-2 ">
+              <a href="{% url 'blog:post_list' %}"> </a>
+              {% if user.is_authenticated %}
+
+              <a
+                class="text-primary-500 font-bold text-xl px-4 py-2"
+                href="{% url 'Accounts:profile' pk=user.pk %}"
+               
+                > {{user.username|title}}</a
+              >
+              {% endif %}
+            </div>
+            <div class="w-1/2 text-right sm:hidden">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar">Home</span>
+                <span class="navbar-toggler-bar">New Post</span>
+                <span class="navbar-toggler-bar">Drafts</span>
+              </button>
+            </div>
+
+            <div class="w-full navigation-menu hidden md:flex md:w-3/4">
+              <div
+                class="flex flex-col md:flex-row pt-8 pb-2 md:pt-0 md:pb-0 md:ml-auto md:items-center"
+              >
+                <a
+                  href="{% url 'blog:post_list' %}"
+                  class="block mt-3 font-semibold md:ml-6 hover:text-indigo-200 bg-blue-500 px-4 py-2 rounded md:mt-0 text-white"
+                  >Home</a
+                >
+
+                {% if user.is_authenticated %}
+                <a
+                  href="{% url 'blog:post_new' %}"
+                  class="block mt-3 font-semibold md:ml-6 hover:text-indigo-200 bg-blue-500 px-4 py-2 rounded md:mt-0 text-white"
+                  >New Post</a
+                >
+                <a
+                  href="{% url 'blog:post_draft_list' %}"
+                  class="block mt-3 font-semibold md:ml-6 hover:text-indigo-200 bg-blue-500 px-4 py-2 rounded md:mt-0 text-white"
+                  >Drafts</a
+                >
+                <a
+                  href="{% url 'user_logout' %}"
+                  class="block mt-3 font-semibold md:ml-6 hover:text-indigo-200 bg-blue-500 px-4 py-2 rounded md:mt-0 text-white"
+                  >Logout</a
+                >
+
+                {% else %}
+
+                <a
+                  href="{% url 'Accounts:register' %}"
+                  class="block mt-3 bg-blue-500 hover:text-white px-4 py-2 rounded text-gray-100 font-semibold md:ml-6 md:mt-0"
+                  >Register</a
+                >
+
+                <a
+                  href="{% url 'user_login' %}"
+                  class="block mt-3 bg-blue-500 hover:text-white px-4 py-2 rounded text-gray-100 font-semibold md:ml-6 md:mt-0"
+                  >Login</a
+                >
+
+                {% endif%}
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="myMain" id="myMain">{% block content %}
+       {% endblock content %}</main>
+
+      <footer id="myFooter" class="myFooter h-40 bg-gray-800 text-gray-300 text-center py-10">
+        <p class="text-sm text-gray-500 mt-12">
+          &copy; 2020 Decha77 - All Rights Reserved.
+        </p>
+      </footer>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $(".navbar-toggler").click(function () {
+        $(this).toggleClass("active");
+        $(".navigation-menu").toggleClass("hidden");
+        $("#navbar").addClass("bg-white");
+      });
+
+      $(function () {
+        var navigation = $("#navbar");
+
+        $(window).scroll(function () {
+          var scroll = $(window).scrollTop();
+          if (scroll >= 10) {
+            navigation.addClass("bg-white xl:py-4 shadow-md");
+            navigation.removeClass("xl:py-8");
+          } else {
+            navigation.removeClass("bg-white xl:py-4 shadow-md");
+            navigation.addClass("xl:py-8");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
