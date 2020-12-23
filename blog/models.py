@@ -23,7 +23,6 @@ class Post(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
     date_published = models.DateTimeField(blank = True, null=True)
 
-
     def publish(self):
         self.date_published = timezone.now()
         self.save()
@@ -37,7 +36,6 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title
-
 
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post',  related_name = 'comments', on_delete = models.CASCADE)
